@@ -1,0 +1,19 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - functions
+      - deploy
+      - gcs-trigger-cf
+      - --memory=512MB
+      - --region=us-central1
+      - --source=.
+      - --entry-point=com.gcp.labs.gcs.trigger.GcsTriggerCloudFunction
+      - --trigger-event=google.cloud.storage.object.v1.finalized
+      - --trigger-source=$_TRIGGER_BUCKET
+      - --runtime=java17
+      - --max-instances=2
+      - --vpc-connector=vpc-us-central1-connector
+      - --service-account=$_SERVICE_ACCOUNT_EMAIL
+      - --egress-settings=all
+      - --ingress-settings=internal-only
+      - --set-env-vars=TRIGGER_BUCKET=$_TRIGGER_BUCKET
