@@ -3,19 +3,13 @@ package com.gcp.labs.gcs.trigger.pubsub;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.pubsub.v1.Publisher;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import com.google.protobuf.ByteString;
 import com.google.pubsub.v1.PubsubMessage;
-import com.google.pubsub.v1.TopicName;
 
 import java.io.IOException;
 import java.util.UUID;
 
 public class PubsubService {
-
-    private final String pubsubTopicName;
-
-    private final String projectId;
 
     private final Publisher publisher;
 
@@ -23,9 +17,7 @@ public class PubsubService {
 
 
     @Inject
-    public PubsubService(@Named("pubsubTopic") String pubsubTopicName, @Named("projectId") String projectId, Publisher publisher, ObjectMapper objectMapper) {
-        this.pubsubTopicName = pubsubTopicName;
-        this.projectId = projectId;
+    public PubsubService(Publisher publisher, ObjectMapper objectMapper) {
         this.publisher = publisher;
         this.objectMapper = objectMapper;
     }
@@ -37,7 +29,6 @@ public class PubsubService {
         imageSizeError.setImageSize(imageSize);
 
         try {
-            Publisher publisher = Publisher.newBuilder(TopicName.of(projectId, pubsubTopicName)).build();
             publisher.publish(PubsubMessage.newBuilder()
                     .setData(ByteString.copyFrom(objectMapper.writeValueAsBytes(imageSizeError)))
                     .putAttributes("id", UUID.randomUUID().toString())

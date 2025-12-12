@@ -3,7 +3,6 @@ package com.gcp.labs.gcs.trigger.properties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import lombok.extern.slf4j.Slf4j;
@@ -14,11 +13,6 @@ import java.util.Properties;
 
 @Slf4j
 public class PropertiesModule extends AbstractModule {
-
-//    @Override
-//    public void configure() {
-//        this.bind(PropertiesService.class).in(Scopes.SINGLETON);
-//    }
 
     @Provides
     @Singleton
