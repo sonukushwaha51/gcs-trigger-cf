@@ -5,11 +5,13 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+@Slf4j
 public class PropertiesModule extends AbstractModule {
 
     @Provides
@@ -19,7 +21,9 @@ public class PropertiesModule extends AbstractModule {
         Properties properties = new Properties();
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("application.properties")) {
             properties.load(inputStream);
+            log.info("Properties: {}", properties.elements());
         } catch (IOException e) {
+            log.error("Error reading properties: {}", properties);
             throw new RuntimeException(e);
         }
         return properties;
