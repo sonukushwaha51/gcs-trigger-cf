@@ -1,8 +1,8 @@
 package com.gcp.labs.gcs.trigger.firestore;
 
-import com.google.protobuf.Timestamp;
-import com.google.type.DateTime;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class ImageModel {
@@ -13,5 +13,5 @@ public class ImageModel {
 
     private String imageName;
 
-    private Timestamp createdTime;
+    private Date createdTime;
 }
