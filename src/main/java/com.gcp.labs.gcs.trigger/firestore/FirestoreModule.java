@@ -18,12 +18,6 @@ public class FirestoreModule extends AbstractModule {
     }
 
     @Provides
-    @Named("firestoreDatabaseId")
-    public String provideFirestoreDatabaseId(Properties properties) {
-        return properties.getProperty("firestore.database.id");
-    }
-
-    @Provides
     @Named("firestoreDatabaseCollection")
     public String provideFirestoreDatabaseCollection(Properties properties) {
         return properties.getProperty("firestore.database.collection");
