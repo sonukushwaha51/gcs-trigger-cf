@@ -15,10 +15,10 @@ import java.util.Properties;
 @Slf4j
 public class PropertiesModule extends AbstractModule {
 
-    @Override
-    public void configure() {
-        this.bind(PropertiesService.class).in(Scopes.SINGLETON);
-    }
+//    @Override
+//    public void configure() {
+//        this.bind(PropertiesService.class).in(Scopes.SINGLETON);
+//    }
 
     @Provides
     @Singleton
