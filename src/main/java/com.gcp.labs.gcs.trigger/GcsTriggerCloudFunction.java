@@ -50,7 +50,7 @@ public class GcsTriggerCloudFunction implements CloudEventsFunction {
         if (fileSize > 5_000_000) {
             LOGGER.info("File size is greater than threshold : {}", storageObjectData.getSize());
             pubsubService.publishErrorMessage(fileSize);
-
+            return;
         }
 
         firestoreService.saveImageDataInFireStore(storageObjectData);
