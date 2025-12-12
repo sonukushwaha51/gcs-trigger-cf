@@ -17,3 +17,6 @@ steps:
       - --egress-settings=all
       - --ingress-settings=internal-only
       - --set-env-vars=TRIGGER_BUCKET=$_TRIGGER_BUCKET
+
+options:
+  logging: CLOUD_LOGGING_ONLY
